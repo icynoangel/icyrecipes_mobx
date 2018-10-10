@@ -1,0 +1,72 @@
+// Item 
+// 
+// Styleguide: 5
+
+
+// Item
+// 
+// Single item styles
+// 
+// Markup:
+// <div style="background-color: #eeeeee; height: 30rem; width: 100%;">
+//  <div class="item">
+//    <div class="item__image">
+//      <img src="images/boat.jpg" />
+//    </div>
+//    <div class="item__details">
+//      <div class="item__title">Boat</div>
+//      <div class="item__description">Lonely boat</div>
+//    </div>
+//  </div>
+// </div>
+// 
+// Styleguide: 5.1
+
+$item-font-size: $font-small;
+$item-color: $mine-shaft;
+$item-bg-color: $alto;
+$item-details-font-size: $font-smaller;
+$item-shadow-color: $alto;
+
+@include component(item) {
+  background-color: $item-bg-color;
+  box-shadow: 3px 3px 6px $item-shadow-color;
+  color: $item-color;
+  display: inline-block;
+  font-size: $item-font-size;
+  height: 24rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 27rem;
+
+  @include part(image) {
+    height: 17rem;
+    width: 25rem;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  @include part(details) {
+    height: 11rem;
+    padding-top: 1rem;
+    vertical-align: top;
+  }
+
+  @include part(title) {
+    font-weight: 700;
+    height: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @include part(description) {
+    font-weight: 500;
+    height: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

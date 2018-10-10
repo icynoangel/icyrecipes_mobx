@@ -1,0 +1,37 @@
+
+$datepicker-color: $mine-shaft;
+$datepicker-font-size: $font-light;
+$datepicker-selected-bg-color: $alto;
+$datepicker-today-color: $mine-shaft;
+$datepicker-hover-color: $gallery;
+
+@include component(datepicker) {
+  color: $datepicker-color;
+  font-size: $datepicker-font-size;
+
+  @include part(year) {
+    display: inline-block;
+    padding-left: 0.5rem;
+    width: 8rem;
+  }
+
+  @include part(month) {
+    display: inline-block;
+    width: 9rem;
+  }
+
+  // react-day-picker styles override - maybe this can be improved
+  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+    background-color: $datepicker-selected-bg-color;
+  }
+
+  .DayPicker-Day--today {
+    color: $datepicker-today-color;
+    font-weight: bold;
+  }
+
+  .DayPicker:not(.DayPicker--interactionDisabled) 
+  .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+    background-color: $datepicker-hover-color;
+  }
+}

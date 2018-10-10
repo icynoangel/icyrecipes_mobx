@@ -1,0 +1,49 @@
+// Modal
+// 
+// Modal sample
+// 
+// Styleguide 3
+ 
+$modal-overlay-bg-color: $semitransparent;
+$modal-content-bg-color: $white;
+$modal-content-border-radius: 0.5rem;
+$modal-content-shadow: 0.2rem 0.2rem 0.3rem $mine-shaft;
+
+$modal-small-height: 25rem;
+$modal-small-width: 60rem;
+
+@include component(modal) {
+
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+
+  @include part(overlay) {
+    background-color: $modal-overlay-bg-color;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+  }
+
+  @include part(content) {
+        
+    background-color: $modal-content-bg-color;
+    border-radius: $modal-content-border-radius;
+    box-shadow: $modal-content-shadow;
+    padding: 2rem;
+    position: absolute;
+    z-index: 101;
+
+    @include option(small) {
+      min-height: $modal-small-height;
+      width: $modal-small-width;
+    }
+  }
+
+}

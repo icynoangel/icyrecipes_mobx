@@ -1,0 +1,7 @@
+$items-bg-color: $gallery;
+
+@include component(items) {
+  background-color: $items-bg-color;
+  height: calc(100% - 10rem); 
+  overflow-y: auto;
+}

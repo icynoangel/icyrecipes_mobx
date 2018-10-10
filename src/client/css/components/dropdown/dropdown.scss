@@ -1,0 +1,231 @@
+
+// Dropdown
+// 
+// Dropdown component
+// 
+// Styleguide 7
+
+// Dropdown closed
+//
+// Markup:
+// <div class="dropdown">
+//  <div class="dropdown__control">
+//    <div class="dropdown__control__select">Select...</div>
+//    <div class="dropdown__control__arrow"></div>
+//  </div>
+// </div>
+//
+// Styleguide 7.1
+// 
+
+// Dropdown open
+//
+// Markup:
+// <div style="height: 150px">
+// <div class="dropdown --open">
+//  <div class="dropdown__control">
+//    <div class="dropdown__control__select">Select...</div>
+//    <div class="dropdown__control__arrow"></div>
+//  </div>
+//  <div class="dropdown__content">
+//    <div class="dropdown__content__option">First option</div>
+//    <div class="dropdown__content__option">Second option</div>
+//  </div>
+// </div>
+// </div>
+//
+// Styleguide 7.2
+// 
+
+// Dropdown open - option selected
+//
+// Markup:
+// <div style="height: 150px">
+// <div class="dropdown --open">
+//  <div class="dropdown__control">
+//    <div class="dropdown__control__select">Second option</div>
+//    <div class="dropdown__control__arrow"></div>
+//  </div>
+//  <div class="dropdown__content">
+//    <div class="dropdown__content__option">First option</div>
+//    <div class="dropdown__content__option --selected">Second option</div>
+//  </div>
+// </div>
+// </div>
+//
+// Styleguide 7.3
+// 
+
+// Dropdown open - tiny
+//
+// Markup:
+// <div style="height: 150px">
+// <div class="dropdown --open --tiny">
+//  <div class="dropdown__control">
+//    <div class="dropdown__control__select">Second option</div>
+//    <div class="dropdown__control__arrow"></div>
+//  </div>
+//  <div class="dropdown__content">
+//    <div class="dropdown__content__option">First option</div>
+//    <div class="dropdown__content__option --selected">Second option</div>
+//  </div>
+// </div>
+// </div>
+//
+// Styleguide 7.4
+  
+// Dropdown tiny width auto
+//
+// Markup:
+// <div style="height: 150px; width: 20rem;">
+// <div class="dropdown --open --tiny --auto">
+//  <div class="dropdown__control">
+//    <div class="dropdown__control__select">Second option</div>
+//    <div class="dropdown__control__arrow"></div>
+//  </div>
+//  <div class="dropdown__content">
+//    <div class="dropdown__content__option">First option</div>
+//    <div class="dropdown__content__option --selected">Second option</div>
+//  </div>
+// </div>
+// </div>
+//
+// Styleguide 7.5
+// 
+
+$dropdown-border-color: $alto;
+$dropdown-background-color: $white;
+$dropdown-color: $mine-shaft;
+$dropdown-arrow-color: $boulder;
+$dropdown-arrow-border-width: 5px;
+
+$dropdown-height: 3rem;
+$dropdown-width: 40rem;
+$dropdown-padding: 0.8rem;
+
+$dropdown-tiny-height: 2rem;
+$dropdown-tiny-width: 18rem;
+$dropdown-tiny-padding: 0.2rem;
+
+$dropdown-bg-hover-color: $gallery; 
+$dropdown-bg-selected-color: $alto; 
+
+@include component(dropdown) {
+
+  background-color: $dropdown-background-color;
+  color: $dropdown-color;
+  display: flex;
+  flex-direction: column;
+  height: $dropdown-height;
+  position: relative;
+  width: $dropdown-width;
+
+  @include part(control) {
+
+    border: 1px solid $dropdown-border-color;
+    display: flex;
+    cursor: pointer;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: $dropdown-padding;
+    position: relative;
+
+    @include part(select) {
+      line-height: $dropdown-height - ($dropdown-padding * 2);
+      white-space: nowrap;
+    }
+
+    @include part(arrow) {
+      border-color: $dropdown-arrow-color transparent transparent;
+      border-style: solid;
+      border-width: $dropdown-arrow-border-width $dropdown-arrow-border-width 0;
+      content: ' ';
+      display: block;
+      height: 0;
+      margin-top: 0.3rem;
+      line-height: $dropdown-height - ($dropdown-padding * 2);
+      position: absolute;
+      right: $dropdown-padding;
+      top: $dropdown-padding;
+      width: 0;
+    }
+  }
+
+  @include part(content) {
+    
+    border-color: $dropdown-border-color;
+    border-style: solid;
+    border-width: 0 1px;
+    max-height: 20rem;
+    overflow-y: auto;
+    position: absolute;
+    top: $dropdown-height;
+    width: 100%;
+    z-index: 1000;
+
+    @include part(option) {
+      background-color: $dropdown-background-color;
+      border-color: $dropdown-border-color;
+      border-style: solid;
+      border-width: 0 0 1px 0;
+      cursor: pointer;
+      height: $dropdown-height;
+      line-height: $dropdown-height - ($dropdown-padding * 2);
+      overflow: hidden;
+      padding: $dropdown-padding;
+      white-space: nowrap;
+
+      @include option(selected) {
+        background-color: $dropdown-bg-selected-color;
+      }
+
+      &:hover {
+        background-color: $dropdown-bg-hover-color;
+      }
+    }
+  }
+
+  @include option(open) {
+    @include part(control) {
+      @include part(arrow) {
+        border-color: transparent transparent $dropdown-arrow-color;
+        border-width: 0 $dropdown-arrow-border-width $dropdown-arrow-border-width;
+      }
+    }
+  }
+
+  @include option(tiny) {
+
+    width: $dropdown-tiny-width;
+
+    @include part(control) {
+      padding: $dropdown-tiny-padding;
+
+      @include part(select) {
+        line-height: $dropdown-tiny-height - ($dropdown-tiny-padding * 2);
+      }
+
+      @include part(arrow) {
+        margin-top: 0rem;
+      }
+    }
+
+    @include part(content) {
+    
+      max-height: 16rem;
+      top: $dropdown-tiny-height + 0.2rem; // this is weird
+    
+      @include part(option) {
+        height: $dropdown-tiny-height;
+        line-height: $dropdown-tiny-height - ($dropdown-tiny-padding * 2);
+        padding: $dropdown-tiny-padding;
+      }
+    }
+  }
+
+  @include option(auto) {
+    width: auto;
+  }
+
+}

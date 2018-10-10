@@ -1,0 +1,106 @@
+// Radio button
+//
+// Markup:
+// <div class="radio">
+//  <div class="radio__button">
+//    <div class="radio__button__checked"></div>
+//  </div>
+//  <div class="radio__label">Radio label</div>
+// </div>
+//
+// Styleguide 6.2
+ 
+// Radio button checked
+//
+// Markup:
+// <div class="radio --checked">
+//  <div class="radio__button">
+//    <div class="radio__button__checked"></div>
+//  </div>
+//  <div class="radio__label">Radio label</div>
+// </div>
+//
+// Styleguide 6.3
+// 
+
+// Radio button disabled
+//
+// Markup:
+// <div class="radio --disabled">
+//  <div class="radio__button">
+//    <div class="radio__button__checked"></div>
+//  </div>
+//  <div class="radio__label">Radio label</div>
+// </div>
+//
+// Styleguide 6.4
+// 
+
+// Radio button disabled checked
+//
+// Markup:
+// <div class="radio --disabled --checked">
+//  <div class="radio__button">
+//    <div class="radio__button__checked"></div>
+//  </div>
+//  <div class="radio__label">Radio label</div>
+// </div>
+//
+// Styleguide 6.5
+//
+
+$radio-button-border-color: $alto;
+$radio-button-height: 2rem; 
+$radio-button-width: 2rem;
+$radio-button-radius: 1rem; 
+
+$radio-button-label-color: $mine-shaft;
+
+$radio-button-checked-bg-color: $harlequin;
+$radio-button-space: 0.6rem;
+
+@include component(radio) {
+
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+
+  @include part(button) {
+    border: 1px solid $radio-button-border-color;
+    border-radius: $radio-button-radius;
+    height: $radio-button-height;
+    position: relative;
+    width: $radio-button-width;
+
+    @include part(checked) {
+      // border: 1px solid $radio-button-border-color;
+      background-color: $radio-button-checked-bg-color;
+      border-radius: $radio-button-radius;
+      display: none;
+      height: $radio-button-height - $radio-button-space;
+      left: $radio-button-space / 2 - 0.1rem;
+      position: absolute;
+      top: $radio-button-space / 2 - 0.1rem;
+      width: $radio-button-width - $radio-button-space;
+    }
+  }
+
+  @include part(label) {
+    color: $radio-button-label-color;
+    line-height: $radio-button-height + 0.2rem;
+    margin-left: 0.5rem;
+  }
+
+  @include option(checked) {
+    @include part(button) {
+      @include part(checked) {
+        display: block;
+      }
+    }
+  }
+
+  @include option(disabled) {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+} 

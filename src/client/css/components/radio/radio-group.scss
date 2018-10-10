@@ -1,0 +1,52 @@
+// Radio
+// 
+// Radio components
+// 
+// Styleguide 6
+
+// Radio group
+//
+// Markup:
+// <div class="radio-group">
+//  <div class="radio-group__label">Radio group</div>
+//  <div class="radio-group__content">
+//    <div class="radio --checked">
+//      <div class="radio__button">
+//        <div class="radio__button__checked"></div>
+//      </div>
+//      <div class="radio__label">Radio option 1</div>
+//    </div>
+//    <div class="radio">
+//      <div class="radio__button">
+//        <div class="radio__button__checked"></div>
+//      </div>
+//      <div class="radio__label">Radio option 2</div>
+//    </div>
+//    <div class="radio --disabled">
+//      <div class="radio__button">
+//        <div class="radio__button__checked"></div>
+//      </div>
+//      <div class="radio__label">Radio option 3 disabled</div>
+//    </div>
+//  </div>
+// </div>
+//
+// Styleguide 6.1
+// 
+
+$radio-group-label-color: $mine-shaft;
+
+@include component(radio-group) {
+
+  display: flex;
+  flex-direction: column;
+
+  @include part(label) {
+    color: $radio-group-label-color;
+  }
+
+  @include part(content) {
+    padding-left: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}

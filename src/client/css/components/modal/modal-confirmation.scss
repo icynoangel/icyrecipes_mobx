@@ -1,0 +1,47 @@
+// Modal confirmation
+//
+// Markup:
+// <div style="width: 600px; height: 400px; position: relative;">
+//  <div class="modal">
+//    <div class="modal__overlay"></div>
+//    <div class="modal__content">
+//      <div className="modal-confirmation">
+//        <div class="modal-confirmation__description">
+//          Please confirm or deny
+//        </div>
+//        <div class="modal-confirmation__buttons">
+//          <button class="button --primary">
+//            Confirm
+//          </button>
+//          <button class="button --secondary">
+//            Deny
+//          </button>
+//        </div>
+//      </div>
+//    </div>
+//   </div>
+// </div>
+//
+// Styleguide 3.1
+// 
+
+$modal-confirmation-height: 25rem;
+
+@include component(modal-confirmation) {
+
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  min-height: $modal-confirmation-height;
+
+  @include part(description) {
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  @include part(buttons) {
+    text-align: center;
+    width: 100%;
+  }
+}

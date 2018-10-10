@@ -1,0 +1,36 @@
+// Notification
+// 
+// Notification section
+// 
+// Styleguide 2
+
+// Notification default
+//
+// Markup:
+// <div class="notification">
+//  <div class="notification__content">
+//    IcyRecipes Items
+//  </div>
+// </div>
+//
+// Styleguide 2.1
+// 
+ 
+$notification-bg-color: $boulder;
+$notification-color: $white;
+
+$notification-height: 10rem;
+$notification-padding: 3rem;
+
+@include component(notification) {
+
+  background-color: $notification-bg-color;
+  color: $notification-color;
+  font-size: $font-larger;
+  height: $notification-height;
+  padding: $notification-padding;
+  
+  @include part(content) {
+    text-align: left;
+  }
+}
