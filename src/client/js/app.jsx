@@ -1,16 +1,16 @@
 import './../css/index.scss';
 import React, {Component} from 'react';
-import ButtonsProvider from './components/containers/buttons-provider';
-import NotificationProvider from './components/containers/notification-provider';
-import ItemsProvider from './components/containers/items-provider';
+import Buttons from './components/button/buttons';
+import Notification from './components/notification/notification';
+import Items from './components/items/items';
 
 class App extends Component {
   render() {
     return (
       <div className="app">
-        <ButtonsProvider />
-        <NotificationProvider />
-        <ItemsProvider />
+        <Buttons />
+        <Notification />
+        <Items />
       </div>
     );
   }

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ModalConfirmation /> Should render ModalConfirmation 1`] = `
+<div
+  className="modal-confirmation"
+>
+  <div
+    className="modal-confirmation__description"
+  >
+    Please confirm or deny
+  </div>
+  <div
+    className="modal-confirmation__buttons"
+  >
+    <Button
+      caption="Confirm"
+      key="confirm"
+      onClick={[Function]}
+      type="primary"
+    />
+    <Button
+      caption="Deny"
+      key="deny"
+      onClick={[Function]}
+      type="secondary"
+    />
+  </div>
+</div>
+`;

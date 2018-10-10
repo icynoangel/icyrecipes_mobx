@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import Button from './button';
 import Modal from '../modal/modal';
 import ModalConfirmation from '../modal/modal-confirmation';
+import {inject, observer} from 'mobx-react';
 
+@inject('ItemsStore')
+@observer
 class Buttons extends Component {
   static propTypes = {
-    getItems: PropTypes.func.isRequired
+    ItemsStore: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -31,7 +34,7 @@ class Buttons extends Component {
       <div className="buttons">
         <Button
           key="button-request-items"
-          onClick={this.props.getItems}
+          onClick={this.props.ItemsStore.getItems}
           caption="Get Items"
           type="primary"
         />

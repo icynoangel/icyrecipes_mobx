@@ -12,11 +12,11 @@ class Item extends Component {
     return (
       <div className="item">
         <div className="item__image">
-          <img src={item.get('itemImage')} alt={item.get('itemDescription')} />
+          <img src={item.itemImage} alt={item.itemDescription} />
         </div>
         <div className="item__details">
-          <div className="item__title">{item.get('itemTitle')}</div>
-          <div className="item__description">{item.get('itemDescription')}</div>
+          <div className="item__title">{item.itemTitle}</div>
+          <div className="item__description">{item.itemDescription}</div>
         </div>
       </div>
     );

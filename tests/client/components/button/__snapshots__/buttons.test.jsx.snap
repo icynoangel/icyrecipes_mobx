@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Buttons /> Should render <Buttons />, <Modal /> and <ModalConfirmation /> 1`] = `
+<inject-Buttons-with-ItemsStore
+  ItemsStore={
+    Object {
+      "getItems": [MockFunction],
+    }
+  }
+>
+  <Buttons
+    ItemsStore={
+      Object {
+        "getItems": [MockFunction],
+      }
+    }
+  >
+    <div
+      className="buttons"
+    >
+      <Button
+        caption="Get Items"
+        key="button-request-items"
+        onClick={[MockFunction]}
+        type="primary"
+      >
+        <button
+          className="button --primary"
+          onClick={[MockFunction]}
+        >
+          Get Items
+        </button>
+      </Button>
+      <Button
+        caption="Open Modal"
+        key="open-confirmation-modal"
+        onClick={[Function]}
+        type="primary"
+      >
+        <button
+          className="button --primary"
+          onClick={[Function]}
+        >
+          Open Modal
+        </button>
+      </Button>
+      <Modal
+        size="small"
+      />
+    </div>
+  </Buttons>
+</inject-Buttons-with-ItemsStore>
+`;

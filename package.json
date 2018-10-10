@@ -2,6 +2,9 @@
   "name": "icyrecipes_mobx",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/",
+  "author": "icynoangel",
+  "description": "Custom setup of create-react-app with MobX",
   "dependencies": {
     "@babel/core": "7.1.0",
     "@svgr/webpack": "2.4.1",
@@ -14,7 +17,9 @@
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "chalk": "2.4.1",
+    "classnames": "^2.2.6",
     "css-loader": "1.0.0",
+    "csstyle": "^1.5.1",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "eslint": "5.6.0",
@@ -24,13 +29,17 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.1",
     "eslint-plugin-react": "7.11.1",
+    "express": "^4.16.3",
     "file-loader": "2.0.0",
     "fs-extra": "7.0.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
+    "husky": "^1.1.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
+    "lint-staged": "^7.3.0",
+    "lodash": "^4.17.11",
     "mini-css-extract-plugin": "0.4.3",
     "mobx": "^5.5.0",
     "mobx-react": "^5.2.8",
@@ -40,6 +49,8 @@
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.0.6",
     "postcss-safe-parser": "4.0.1",
+    "prettier": "^1.14.3",
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-app-polyfill": "^0.1.3",
     "react-dev-utils": "^6.0.4",
@@ -47,6 +58,7 @@
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.0",
+    "superagent": "^4.0.0-beta.5",
     "terser-webpack-plugin": "1.1.0",
     "url-loader": "1.1.1",
     "webpack": "4.19.1",
@@ -57,7 +69,30 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "TZ=America/New_York node scripts/test.js",
+    "test:update": "TZ=America/New_York node scripts/test.js --updateSnapshot",
+    "precommit": "lint-staged && CI=true npm run coverage",
+    "eslint": "eslint ./ --no-cache",
+    "beautify": "prettier --single-quote --no-bracket-spacing true --write",
+    "coverage": "TZ=America/New_York node scripts/test.js --coverage --no-cache --bail",
+    "devserver": "node_modules/nodemon/bin/nodemon.js src/server/server.js dev",
+    "server": "node src/server/server.js",
+    "dev": "npm run start | npm run devserver"
+  },
+  "pre-commit": [
+    "precommit"
+  ],
+  "lint-staged": {
+    "src/**/*.{js,jsx,json}": [
+      "prettier --single-quote --no-bracket-spacing true --write",
+      "eslint --no-cache",
+      "git add"
+    ],
+    "tests/**/*.{js,jsx,json}": [
+      "prettier --single-quote --no-bracket-spacing true --write",
+      "eslint --no-cache",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -70,15 +105,26 @@
   ],
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
+      "src/client/js/**/*.{js,jsx}",
+      "!src/client/js/serviceWorker.js",
+      "!src/client/js/index.js"
     ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 85,
+        "functions": 85,
+        "lines": 85,
+        "statements": 85
+      }
+    },
     "resolver": "jest-pnp-resolver",
     "setupFiles": [
       "react-app-polyfill/jsdom"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/tests/setupTests.js",
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx}"
+      "<rootDir>/tests/**/__tests__/**/*.{js,jsx}",
+      "<rootDir>/tests/**/?(*.)(spec|test).{js,jsx}"
     ],
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
@@ -107,6 +153,25 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ]
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "enzyme-to-json": "^3.3.4",
+    "ip": "^1.1.5",
+    "jest-sonar-reporter": "^2.0.0",
+    "nock": "^10.0.1",
+    "node-sass": "^4.9.3",
+    "nodemon": "^1.18.4"
   }
 }

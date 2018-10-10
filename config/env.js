@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
+const ip = require('ip');
+const SERVER_PORT = require('../src/config').SERVER_PORT;
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -39,6 +41,8 @@ dotenvFiles.forEach(dotenvFile => {
     );
   }
 });
+
+process.env.REACT_APP_SERVICE_URL = `http://${ip.address()}:${SERVER_PORT}`;
 
 // We support resolving modules according to `NODE_PATH`.
 // This lets you use absolute paths in imports inside large monorepos:
@@ -77,6 +81,7 @@ function getClientEnvironment(publicUrl) {
         // This should only be used as an escape hatch. Normally you would put
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
+        REACT_APP_SERVICE_URL: `http://${ip.address()}:${SERVER_PORT}` 
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin

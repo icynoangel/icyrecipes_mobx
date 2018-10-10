@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
-import configureStore from './configureStore';
+import * as serviceWorker from './serviceWorker';
 import App from './app';
 
-import logger from './middlewares/logger-middleware';
+import {configure} from 'mobx';
+import {Provider} from 'mobx-react';
+import ItemsStore from './stores/items-store';
 
-const storeConfig = configureStore([logger]);
+configure({enforceActions: 'always'});
 
 ReactDOM.render(
-  <storeConfig.Provider store={storeConfig.store}>
+  <Provider ItemsStore={ItemsStore}>
     <App />
-  </storeConfig.Provider>,
+  </Provider>,
   document.getElementById('root')
 );
 
-registerServiceWorker();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();

@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Item from './item';
+import {inject, observer} from 'mobx-react';
 
+@inject('ItemsStore')
+@observer
 class Items extends Component {
   static propTypes = {
-    items: PropTypes.object.isRequired
+    ItemsStore: PropTypes.object.isRequired
   };
 
   render() {
-    const items = this.props.items;
+    const {ItemsStore} = this.props;
 
     return (
       <div className="items">
-        {items.map((item, key) => {
-          return <Item item={item} key={key} />;
+        {ItemsStore.items.map((item, key) => {
+          return <Item item={item} key={`item-${item.itemTitle}`} />;
         })}
       </div>
     );

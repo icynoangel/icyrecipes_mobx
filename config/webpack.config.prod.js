@@ -83,12 +83,16 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
     },
   ];
   if (preProcessor) {
-    loaders.push({
-      loader: require.resolve(preProcessor),
-      options: {
-        sourceMap: shouldUseSourceMap,
-      },
-    });
+    if (typeof preProcessor === "string") {
+      loaders.push({
+        loader: require.resolve(preProcessor),
+        options: {
+          sourceMap: shouldUseSourceMap,
+        },
+      });
+    } else {
+      loaders.push(preProcessor);
+    }
   }
   return loaders;
 };
@@ -369,7 +373,15 @@ module.exports = {
                 importLoaders: 2,
                 sourceMap: shouldUseSourceMap,
               },
-              'sass-loader'
+              {
+                loader: require.resolve('sass-loader'),
+                options: {
+                  includePaths: [
+                    path.resolve(paths.appNodeModules + "/csstyle")
+                  ],
+                  sourceMap: shouldUseSourceMap
+                }
+              }
             ),
             // Don't consider CSS imports dead code even if the
             // containing package claims to have no side effects.

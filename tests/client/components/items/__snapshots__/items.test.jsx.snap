@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Items /> Should render <Items /> 1`] = `
+<div
+  className="items"
+>
+  <Item
+    item={
+      Object {
+        "itemDescription": "Lonely boat",
+        "itemImage": "/boat.jpg",
+        "itemTitle": "Boat",
+      }
+    }
+    key="item-Boat"
+  />
+  <Item
+    item={
+      Object {
+        "itemDescription": "Sunset rain",
+        "itemImage": "/rain.jpg",
+        "itemTitle": "Rain",
+      }
+    }
+    key="item-Rain"
+  />
+</div>
+`;
+
+exports[`<Items /> Should render no Item 1`] = `
+<div
+  className="items"
+/>
+`;
