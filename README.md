@@ -1,5 +1,5 @@
 
-### IcyRecipes is a custom configuration based on ejected create-react-app 
+### IcyRecipes MobX is a custom configuration based on ejected create-react-app 
 
 ### Modules this package includes
 
