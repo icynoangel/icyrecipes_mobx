@@ -71,7 +71,6 @@
     "build": "node scripts/build.js",
     "test": "TZ=America/New_York node scripts/test.js",
     "test:update": "TZ=America/New_York node scripts/test.js --updateSnapshot",
-    "precommit": "lint-staged && CI=true npm run coverage",
     "eslint": "eslint ./ --no-cache",
     "beautify": "prettier --single-quote --no-bracket-spacing true --write",
     "coverage": "TZ=America/New_York node scripts/test.js --coverage --no-cache --bail",
@@ -79,9 +78,6 @@
     "server": "node src/server/server.js",
     "dev": "npm run start | npm run devserver"
   },
-  "pre-commit": [
-    "precommit"
-  ],
   "lint-staged": {
     "src/**/*.{js,jsx,json}": [
       "prettier --single-quote --no-bracket-spacing true --write",
@@ -174,5 +170,10 @@
     "nock": "^10.0.1",
     "node-sass": "^4.9.3",
     "nodemon": "^1.18.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && CI=true npm run coverage"
+    }
   }
 }
