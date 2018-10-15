@@ -47,22 +47,24 @@ describe('ItemsStore', function() {
     expect(itemsStore.text).toEqual('IcyRecipes MobX Error Fetching Items');
   });
 
-  it('Should update items with request response', () => {
+  it('Should update items with request response', done => {
     superagent.__setMockResponseBody(this.itemsResponse);
     superagent.__setMockError(undefined);
 
     itemsStore.getItems().then(() => {
       expect(itemsStore.items).toEqual(this.itemsResponse.items);
+      done();
     });
   });
 
-  it('Should set error when request fails', () => {
+  it('Should set error when request fails', done => {
     const error = 'items-error';
     superagent.__setMockError(error);
 
     itemsStore.getItems().catch(() => {
       expect(itemsStore.items).toEqual([]);
       expect(itemsStore.error).toEqual(error);
+      done();
     });
   });
 });

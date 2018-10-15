@@ -41,10 +41,12 @@ class ItemsStore {
       runInAction(() => {
         this.handleUpdateItems(response.items);
       });
+      return response;
     } catch (error) {
       runInAction(() => {
         this.handleError(error);
       });
+      throw new Error(error);
     }
   }
 }
