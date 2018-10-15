@@ -7,19 +7,19 @@ const url = `http://${ip.address()}:${port}`;
 const responseSuccess = {
   items: [
     {
-      itemImage: url + '/images/boat.jpg',
-      itemTitle: 'Boat',
-      itemDescription: 'Lonely boat'
+      image: url + '/images/boat.jpg',
+      title: 'Boat',
+      description: 'Lonely boat'
     },
     {
-      itemImage: url + '/images/rain.jpg',
-      itemTitle: 'Rain',
-      itemDescription: 'Sunset rain'
+      image: url + '/images/rain.jpg',
+      title: 'Rain',
+      description: 'Sunset rain'
     },
     {
-      itemImage: url + '/images/lake.jpg',
-      itemTitle: 'Lake',
-      itemDescription: 'Nice lake'
+      image: url + '/images/lake.jpg',
+      title: 'Lake',
+      description: 'Nice lake'
     }
   ]
 };

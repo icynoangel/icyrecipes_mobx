@@ -12,7 +12,7 @@ exports[`<Items /> Should render <Items /> 1`] = `
         "itemTitle": "Boat",
       }
     }
-    key="item-Boat"
+    key="item-undefined"
   />
   <Item
     item={
@@ -22,7 +22,7 @@ exports[`<Items /> Should render <Items /> 1`] = `
         "itemTitle": "Rain",
       }
     }
-    key="item-Rain"
+    key="item-undefined"
   />
 </div>
 `;

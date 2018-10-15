@@ -10,27 +10,42 @@ class ItemsStore {
   @observable
   error;
 
+  constructor() {
+    this.handleUpdateItems = this.handleUpdateItems.bind(this);
+    this.handleError = this.handleError.bind(this);
+    this.getItems = this.getItems.bind(this);
+  }
+
   @computed
   get nbrItems() {
     return this.items.length;
   }
 
-  @action.bound
-  getItems() {
+  handleUpdateItems(items) {
+    this.items = items;
+    this.text = `IcyRecipes MobX (${this.nbrItems} items)`;
+  }
+
+  handleError(error) {
+    this.error = error;
+    this.text = 'IcyRecipes MobX Error Fetching Items';
+  }
+
+  @action
+  async getItems() {
     this.text = 'Loading items';
-    Ajax.get(config.items())
-      .then(response => {
-        runInAction(() => {
-          this.items = response.items;
-          this.text = `IcyRecipes MobX (${this.nbrItems} items)`;
-        });
-      })
-      .catch(error => {
-        runInAction(() => {
-          this.error = error;
-          this.text = 'IcyRecipes MobX';
-        });
+    let response;
+
+    try {
+      response = await Ajax.get(config.items());
+      runInAction(() => {
+        this.handleUpdateItems(response.items);
       });
+    } catch (error) {
+      runInAction(() => {
+        this.handleError(error);
+      });
+    }
   }
 }
 

@@ -12,11 +12,11 @@ class Item extends Component {
     return (
       <div className="item">
         <div className="item__image">
-          <img src={item.itemImage} alt={item.itemDescription} />
+          <img src={item.image} alt={item.description} />
         </div>
         <div className="item__details">
-          <div className="item__title">{item.itemTitle}</div>
-          <div className="item__description">{item.itemDescription}</div>
+          <div className="item__title">{item.title}</div>
+          <div className="item__description">{item.description}</div>
         </div>
       </div>
     );

@@ -16,7 +16,7 @@ class Items extends Component {
     return (
       <div className="items">
         {ItemsStore.items.map((item, key) => {
-          return <Item item={item} key={`item-${item.itemTitle}`} />;
+          return <Item item={item} key={`item-${item.title}`} />;
         })}
       </div>
     );
